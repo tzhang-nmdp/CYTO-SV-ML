@@ -11,6 +11,10 @@ ${OUTPUT_DIR}/${cohort_name}".sv.all.combine_all_nontrs"
 ${OUTPUT_DIR}/${cohort_name}".sv.all.combine_all_trs_all" 
 ${OUTPUT_DIR}/${cohort_name}".sv.all.combine_all_nontrs_all"
 
+1.4 Copy pre-trained model and test data to into the folder as:
+${OUTPUT_DIR}/pre_trained_model.pickle
+${OUTPUT_DIR}/test_data.csv
+
 ### 2. Run CYTO-SV-ML AUTOML model training and validation
 ```
 python {CYTO_SV_ML_DIR}/Pipeline_script/CYTO-SV-Auto-ML_modelling.py -s ${cohort_name} -o ${OUTPUT_DIR}/${cohort_name} -x ${params.sv_feature_metrics_index} -k ${params.kfs} 
@@ -20,7 +24,7 @@ Note: This is an example dataset (a subset of > 5GB full dataset) and full data 
 CYTO-SV-ML: a machine learning framework for discovery and classification of cytogenetic structural variants using whole genome sequencing data (under review).
 
 ### 3. Run CYTO-SV-ML AUTOML model prediction
-Copy pre-trained model to ${OUTPUT_DIR}/  
+ 
 ```
 # load pre-trained model
 
