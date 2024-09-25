@@ -32,8 +32,6 @@ CYTO-SV-ML: a machine learning framework for discovery and classification of cyt
  
 ```
 from supervised.automl import AutoML
-from sklearn import metrics, datasets
-from sklearn.metrics import roc_curve, auc
 import pandas as pd
 
 # load pre-trained model
