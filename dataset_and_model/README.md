@@ -11,7 +11,7 @@ ${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_nontrs
 ${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_trs_all
 ${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_nontrs_all
 
-1.4 Copy pre-trained model and test data to into the folder as:
+1.4 Copy pre-trained model and test dataset to into the folder as:
 ${OUTPUT_DIR}/pre_trained_trs_model_folder
 ${OUTPUT_DIR}/pre_trained_nontrs_model_folder
 ${OUTPUT_DIR}/test_trs_sv_data_file
@@ -48,8 +48,6 @@ test_nontrs_sv_data = pd.read_csv(test_trs_sv_data_file,sep="\t", header=0, inde
 # run sv classification prediction
 test_trs_sv_predictions = pre_trained_automl_trs_model.predict_all(test_trs_sv_data)
 test_nontrs_sv_predictions = pre_trained_automl_nontrs_model.predict_all(test_nontrs_sv_data)
-
-# run model performance evaluation
 
 ```
 Note: The scripts in step 2 and 3 has been tested with python version 3.9.6
