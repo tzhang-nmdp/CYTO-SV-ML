@@ -6,13 +6,13 @@
 
 1.2 Create output folder: ${OUTPUT_DIR}/${cohort_name}/cyto_sv_ml/
 
-1.3 Unzip training_test.zip and copy the files into the folder as: 
+1.3 Unzip the files in training_test folder and copy them into your local directory like: 
 ${OUTPUT_DIR}/test.sv.all.combine_all_trs
 ${OUTPUT_DIR}/test.sv.all.combine_all_nontrs
 ${OUTPUT_DIR}/test.sv.all.combine_all_trs_all
 ${OUTPUT_DIR}/test.sv.all.combine_all_nontrs_all
 
-1.4 Unzip pre_trained_model.zip and copy the files into the folder as:
+1.4 Unzip pre_trained_model.zip and copy the files into  your local directory like:
 ${OUTPUT_DIR}/pre_trained_trs_model_folder
 ${OUTPUT_DIR}/pre_trained_nontrs_model_folder
 ${OUTPUT_DIR}/trs_transform_fit.pickle
