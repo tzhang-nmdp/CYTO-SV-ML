@@ -12,7 +12,7 @@ ${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_nontrs
 ${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_trs_all
 ${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_nontrs_all
 
-1.4 Copy pre-trained model and test dataset to into the folder as:
+1.4 Unzip and copy pre-trained model and test dataset to into the folder as:
 ${OUTPUT_DIR}/pre_trained_trs_model_folder
 ${OUTPUT_DIR}/pre_trained_nontrs_model_folder
 ${OUTPUT_DIR}/test_trs_sv_data_file
