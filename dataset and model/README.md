@@ -21,3 +21,8 @@ CYTO-SV-ML: a machine learning framework for discovery and classification of cyt
 
 ### 3. Run CYTO-SV-ML AUTOML model prediction
 ```
+
+
+
+```
+Note: The scripts in step 2 and 3 need python version >=3.8.0
