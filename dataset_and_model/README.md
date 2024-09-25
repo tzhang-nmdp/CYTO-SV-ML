@@ -21,7 +21,7 @@ ${OUTPUT_DIR}/test_nontrs_sv_data_file
 
 ### 2. Run CYTO-SV-ML AUTOML model training and validation
 ```
-python {CYTO_SV_ML_DIR}/Pipeline_script/CYTO-SV-Auto-ML_modelling.py -s test -o ${OUTPUT_DIR}/test -x ${params.sv_feature_metrics_index} -k ${params.kfs} 
+python ${CYTO_SV_ML_DIR}/Pipeline_script/CYTO-SV-Auto-ML_modelling.py -s test -o ${OUTPUT_DIR}/test -x  ${CYTO_SV_ML_DIR}/sv_feature_metrics.csv -k 5 
 ```
 Note: This is a subset of > 5GB dataset and full data information will be available in our publication:
 
