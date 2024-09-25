@@ -40,8 +40,10 @@ pre_trained_trs_model_folder=${OUTPUT_DIR}"/pre_trained_trs_model_folder"
 pre_trained_automl_nontrs_model_folder=${OUTPUT_DIR}"/pre_trained_nontrs_model_folder"
 pre_trained_automl_trs_model = AutoML(results_path=pre_trained_trs_model_folder)
 pre_trained_automl_nontrs_model = AutoML(results_path=pre_trained_automl_nontrs_model_folder)
-trs_transform_fit=pickle.load(open(trs_transform_fit_pickle, "rb"))
-nontrs_transform_fit=pickle.load(open(nontrs_transform_fit_pickle,"rb"))
+trs_transform_fit_pickle_file=${OUTPUT_DIR}"/trs_transform_fit_pickle_file"
+nontrs_transform_fit_pickle_file=${OUTPUT_DIR}"/nontrs_transform_fit_pickle_file"
+trs_transform_fit=pickle.load(open(trs_transform_fit_pickle_file, "rb"))
+nontrs_transform_fit=pickle.load(open(trs_transform_fit_pickle_file,"rb"))
 
 # load test dataset
 test_trs_sv_data_file=${OUTPUT_DIR}"/test_trs_sv_data_file"
