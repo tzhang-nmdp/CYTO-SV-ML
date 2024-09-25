@@ -42,9 +42,9 @@ pre_trained_automl_nontrs_model = AutoML(results_path=pre_trained_automl_nontrs_
 
 # load test dataset
 test_trs_sv_data_file=${OUTPUT_DIR}"/test_trs_sv_data_file"
-test_trs_sv_data_file=${OUTPUT_DIR}"/test_trs_sv_data_file"
+test_nontrs_sv_data_file=${OUTPUT_DIR}"/test_nontrs_sv_data_file"
 test_trs_sv_data = pd.read_csv(test_trs_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
-test_nontrs_sv_data = pd.read_csv(test_trs_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
+test_nontrs_sv_data = pd.read_csv(test_nontrs_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
 
 # run sv classification prediction
 test_trs_sv_predictions = pre_trained_automl_trs_model.predict_all(test_trs_sv_data)
