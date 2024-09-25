@@ -32,7 +32,6 @@ from supervised.automl import AutoML
 from sklearn import metrics, datasets
 from sklearn.metrics import roc_curve, auc
 import pandas as pd
-import pickle
 
 # load pre-trained model
 pre_trained_trs_model_folder=${OUTPUT_DIR}"/pre_trained_trs_model_folder"
