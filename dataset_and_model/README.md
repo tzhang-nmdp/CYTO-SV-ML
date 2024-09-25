@@ -15,6 +15,8 @@ ${OUTPUT_DIR}/test.sv.all.combine_all_nontrs_all
 1.4 Unzip and copy pre-trained model and test data into the folder as:
 ${OUTPUT_DIR}/pre_trained_trs_model_folder
 ${OUTPUT_DIR}/pre_trained_nontrs_model_folder
+${OUTPUT_DIR}/trs_transform_fit.pickle
+${OUTPUT_DIR}/nontrs_transform_fit.pickle
 ${OUTPUT_DIR}/test_trs_sv_data_file
 ${OUTPUT_DIR}/test_nontrs_sv_data_file
 ```
