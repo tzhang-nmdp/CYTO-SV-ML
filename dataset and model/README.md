@@ -26,7 +26,11 @@ Copy pre-trained model to ${OUTPUT_DIR}/
 
 # load test dataset
 
-# run prediction
+# transform test data
+
+# run sv classification prediction
+
+# run model performance evaluation
 
 
 ```
