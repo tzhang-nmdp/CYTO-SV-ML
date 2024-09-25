@@ -4,15 +4,15 @@
 ```
 1.1 Install CYTO-SV-ML environment according to the instruction at main page
 
-1.2 Create output folder: ${OUTPUT_DIR}/${cohort_name}/cyto_sv_ml/
+1.2 Create your local output directory: ${OUTPUT_DIR}/cyto_sv_ml/
 
-1.3 Unzip the files in training_test folder and copy them into your local directory like: 
+1.3 Unzip the files in training_test_data folder and copy them into your local directory like: 
 ${OUTPUT_DIR}/test.sv.all.combine_all_trs
 ${OUTPUT_DIR}/test.sv.all.combine_all_nontrs
 ${OUTPUT_DIR}/test.sv.all.combine_all_trs_all
 ${OUTPUT_DIR}/test.sv.all.combine_all_nontrs_all
 
-1.4 Unzip pre_trained_model.zip and copy the files into  your local directory like:
+1.4 Unzip pre_trained_model.zip and copy the files into your local directory like:
 ${OUTPUT_DIR}/pre_trained_trs_model_folder
 ${OUTPUT_DIR}/pre_trained_nontrs_model_folder
 ${OUTPUT_DIR}/trs_transform_fit.pickle
