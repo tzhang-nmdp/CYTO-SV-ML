@@ -20,9 +20,14 @@ Note: This is an example dataset (a subset of > 5GB full dataset) and full data 
 CYTO-SV-ML: a machine learning framework for discovery and classification of cytogenetic structural variants using whole genome sequencing data (under review).
 
 ### 3. Run CYTO-SV-ML AUTOML model prediction
+Copy pre-trained model to ${OUTPUT_DIR}/  
 ```
+# load pre-trained model
 
+# load test dataset
+
+# run prediction
 
 
 ```
-Note: The scripts in step 2 and 3 need python version >=3.8.0
+Note: The scripts in step 2 and 3 has been tested with python version 3.9.6
