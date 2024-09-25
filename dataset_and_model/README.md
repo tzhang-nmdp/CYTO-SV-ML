@@ -6,10 +6,10 @@
 1.2 Create output folder: ${OUTPUT_DIR}/${cohort_name}/cyto_sv_ml/
 
 1.3 Unzip and copy the consolidated datasets into the folder as: 
-${OUTPUT_DIR}/${cohort_name}".sv.all.combine_all_trs" 
-${OUTPUT_DIR}/${cohort_name}".sv.all.combine_all_nontrs"
-${OUTPUT_DIR}/${cohort_name}".sv.all.combine_all_trs_all" 
-${OUTPUT_DIR}/${cohort_name}".sv.all.combine_all_nontrs_all"
+${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_trs
+${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_nontrs
+${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_trs_all
+${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_nontrs_all
 
 1.4 Copy pre-trained model and test data to into the folder as:
 ${OUTPUT_DIR}/pre_trained_model.pickle
@@ -33,12 +33,20 @@ import pandas as pd
 import pickle
 
 # load pre-trained model
+pre_trained_trs_model_folder=${OUTPUT_DIR}"/pre_trained_trs_model_folder"
+pre_trained_automl_nontrs_model_folder=${OUTPUT_DIR}"/pre_trained_nontrs_model_folder"
+pre_trained_automl_trs_model = AutoML(mode="Explain", algorithms=["Xgboost"], n_jobs= 6, results_path=pre_trained_trs_model_folder)
+pre_trained_automl_nontrs_model = AutoML(mode="Explain", algorithms=["Xgboost"], n_jobs= 6, results_path=pre_trained_automl_nontrs_model_folder)
 
 # load test dataset
-
-# transform test data
+test_trs_sv_data_file=${OUTPUT_DIR}"/test_data.csv"
+test_trs_sv_data = pd.read_csv(test_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
+test_trs_sv_data_file=${OUTPUT_DIR}"/test_data.csv"
+test_trs_sv_data = pd.read_csv(test_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
 
 # run sv classification prediction
+predictions = pre_trained_automl_trs_model.predict_all(sv_data_10_tf)
+predictions = pre_trained_automl_nontrs_model.predict_all(sv_data_10_tf)
 
 # run model performance evaluation
 
