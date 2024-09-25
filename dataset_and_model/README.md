@@ -37,8 +37,8 @@ import pandas as pd
 # load pre-trained model
 pre_trained_trs_model_folder=${OUTPUT_DIR}"/pre_trained_trs_model_folder"
 pre_trained_automl_nontrs_model_folder=${OUTPUT_DIR}"/pre_trained_nontrs_model_folder"
-pre_trained_automl_trs_model = AutoML(mode="Explain", algorithms=["Xgboost"], results_path=pre_trained_trs_model_folder)
-pre_trained_automl_nontrs_model = AutoML(mode="Explain", algorithms=["Xgboost"], results_path=pre_trained_automl_nontrs_model_folder)
+pre_trained_automl_trs_model = AutoML(results_path=pre_trained_trs_model_folder)
+pre_trained_automl_nontrs_model = AutoML(results_path=pre_trained_automl_nontrs_model_folder)
 
 # load test dataset
 test_trs_sv_data_file=${OUTPUT_DIR}"/test_trs_sv_data_file"
