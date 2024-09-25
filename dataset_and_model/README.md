@@ -15,7 +15,7 @@ ${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_nontrs_all
 ${OUTPUT_DIR}/pre_trained_trs_model_folder
 ${OUTPUT_DIR}/pre_trained_nontrs_model_folder
 ${OUTPUT_DIR}/test_trs_sv_data_file
-${OUTPUT_DIR}/test_trs_sv_data_file
+${OUTPUT_DIR}/test_nontrs_sv_data_file
 
 ### 2. Run CYTO-SV-ML AUTOML model training and validation
 ```
@@ -43,12 +43,12 @@ pre_trained_automl_nontrs_model = AutoML(mode="Explain", algorithms=["Xgboost"],
 # load test dataset
 test_trs_sv_data_file=${OUTPUT_DIR}"/test_trs_sv_data_file"
 test_trs_sv_data_file=${OUTPUT_DIR}"/test_trs_sv_data_file"
-test_trs_sv_data = pd.read_csv(test_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
-test_trs_sv_data = pd.read_csv(test_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
+test_trs_sv_data = pd.read_csv(test_trs_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
+test_nontrs_sv_data = pd.read_csv(test_trs_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
 
 # run sv classification prediction
-predictions = pre_trained_automl_trs_model.predict_all(sv_data_10_tf)
-predictions = pre_trained_automl_nontrs_model.predict_all(sv_data_10_tf)
+test_trs_sv_predictions = pre_trained_automl_trs_model.predict_all(test_trs_sv_data)
+test_nontrs_sv_predictions = pre_trained_automl_nontrs_model.predict_all(test_nontrs_sv_data)
 
 # run model performance evaluation
 
