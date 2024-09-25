@@ -1,30 +1,23 @@
 # Instructions for training, validation and prediction of SV classification using CYTO-SV-ML AUTOML models
 
 ### 1. Prepare CYTO-SV-ML environment and data
-1.1 Install CYTO-SV-ML environment according to the main page
+```
+1.1 Install CYTO-SV-ML environment according to the instruction at main page
 
 1.2 Create output folder: ${OUTPUT_DIR}/${cohort_name}/cyto_sv_ml/
 
 1.3 Unzip and copy the consolidated datasets into the folder as: 
-
 ${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_trs
-
 ${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_nontrs
-
 ${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_trs_all
-
 ${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_nontrs_all
 
 1.4 Copy pre-trained model and test dataset to into the folder as:
-
 ${OUTPUT_DIR}/pre_trained_trs_model_folder
-
 ${OUTPUT_DIR}/pre_trained_nontrs_model_folder
-
 ${OUTPUT_DIR}/test_trs_sv_data_file
-
 ${OUTPUT_DIR}/test_nontrs_sv_data_file
-
+```
 
 ### 2. Run CYTO-SV-ML AUTOML model training and validation
 ```
