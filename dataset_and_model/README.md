@@ -39,9 +39,9 @@ pre_trained_automl_trs_model = AutoML(mode="Explain", algorithms=["Xgboost"], n_
 pre_trained_automl_nontrs_model = AutoML(mode="Explain", algorithms=["Xgboost"], n_jobs= 6, results_path=pre_trained_automl_nontrs_model_folder)
 
 # load test dataset
-test_trs_sv_data_file=${OUTPUT_DIR}"/test_data.csv"
+test_trs_sv_data_file=${OUTPUT_DIR}"/test_trs_sv_data_file"
+test_trs_sv_data_file=${OUTPUT_DIR}"/test_trs_sv_data_file"
 test_trs_sv_data = pd.read_csv(test_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
-test_trs_sv_data_file=${OUTPUT_DIR}"/test_data.csv"
 test_trs_sv_data = pd.read_csv(test_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
 
 # run sv classification prediction
