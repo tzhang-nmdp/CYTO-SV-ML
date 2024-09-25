@@ -17,7 +17,7 @@ python {CYTO_SV_ML_DIR}/Pipeline_script/CYTO-SV-Auto-ML_modelling.py -s ${cohort
 ```
 Note: This is an example dataset (a subset of > 5GB full dataset) and full data information will be released in our publication:
 
-CYTO-SV-ML: a machine learning framework for discovery and classification of cytogenetic structural variants using whole genome sequencing data.
+CYTO-SV-ML: a machine learning framework for discovery and classification of cytogenetic structural variants using whole genome sequencing data (under review).
 
 ### 3. Run CYTO-SV-ML AUTOML model prediction
 ```
