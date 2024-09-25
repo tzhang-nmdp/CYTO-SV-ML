@@ -18,7 +18,7 @@ Installation
 ============
 ### Install Conda/Docker environment
 ```
-Conda and Docker are prerequisites and please install them in your local environment. 
+Conda and Docker are prerequisites and please install them according to official websites in your local environment. 
 ```
 
 ### Install parliament and chromoseq Docker
