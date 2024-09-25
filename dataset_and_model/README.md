@@ -35,11 +35,19 @@ from supervised.automl import AutoML
 import pandas as pd
 import pickle
 
-# load pre-trained model
+# replace ${OUTPUT_DIR} with your local directory
 pre_trained_trs_model_folder=${OUTPUT_DIR}"/pre_trained_trs_model_folder"
 pre_trained_automl_nontrs_model_folder=${OUTPUT_DIR}"/pre_trained_nontrs_model_folder"
+trs_transform_fit_pickle_file=${OUTPUT_DIR}"/trs_transform_fit_pickle_file"
+nontrs_transform_fit_pickle_file=${OUTPUT_DIR}"/nontrs_transform_fit_pickle_file"
+
+# load pre-trained model
 pre_trained_automl_trs_model = AutoML(results_path=pre_trained_trs_model_folder)
 pre_trained_automl_nontrs_model = AutoML(results_path=pre_trained_automl_nontrs_model_folder)
+
+# load data preprocess
+trs_transform_fit=pickle.load(open(trs_transform_fit_pickle_file, "rb"))
+nontrs_transform_fit=pickle.load(open(trs_transform_fit_pickle_file,"rb"))
 
 # load test dataset
 test_trs_sv_data_file=${OUTPUT_DIR}"/test_trs_sv_data_file"
@@ -47,11 +55,7 @@ test_nontrs_sv_data_file=${OUTPUT_DIR}"/test_nontrs_sv_data_file"
 test_trs_sv_data = pd.read_csv(test_trs_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
 test_nontrs_sv_data = pd.read_csv(test_nontrs_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
 
-# process data transformation
-trs_transform_fit_pickle_file=${OUTPUT_DIR}"/trs_transform_fit_pickle_file"
-nontrs_transform_fit_pickle_file=${OUTPUT_DIR}"/nontrs_transform_fit_pickle_file"
-trs_transform_fit=pickle.load(open(trs_transform_fit_pickle_file, "rb"))
-nontrs_transform_fit=pickle.load(open(trs_transform_fit_pickle_file,"rb"))
+# run data preprocess 
 tf_test_trs_sv_data=trs_transform_fit.fit(test_trs_sv_data)
 tf_test_nontrs_sv_data=nontrs_transform_fit.fit(test_nontrs_sv_data)
 
