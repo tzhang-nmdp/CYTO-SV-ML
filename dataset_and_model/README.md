@@ -23,6 +23,7 @@ ${OUTPUT_DIR}/test_trs_sv_data_file
 
 ${OUTPUT_DIR}/test_nontrs_sv_data_file
 
+
 ### 2. Run CYTO-SV-ML AUTOML model training and validation
 ```
 python {CYTO_SV_ML_DIR}/Pipeline_script/CYTO-SV-Auto-ML_modelling.py -s ${cohort_name} -o ${OUTPUT_DIR}/${cohort_name} -x ${params.sv_feature_metrics_index} -k ${params.kfs} 
@@ -30,6 +31,7 @@ python {CYTO_SV_ML_DIR}/Pipeline_script/CYTO-SV-Auto-ML_modelling.py -s ${cohort
 Note: This is a subset of > 5GB dataset and full data information will be released in our publication:
 
 CYTO-SV-ML: a machine learning framework for discovery and classification of cytogenetic structural variants using whole genome sequencing data (under review).
+
 
 ### 3. Run CYTO-SV-ML AUTOML model prediction
  
