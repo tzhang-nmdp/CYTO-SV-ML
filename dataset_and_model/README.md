@@ -49,7 +49,7 @@ test_nontrs_sv_data_file=${OUTPUT_DIR}"/test_nontrs_sv_data_file"
 test_trs_sv_data = pd.read_csv(test_trs_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
 test_nontrs_sv_data = pd.read_csv(test_nontrs_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
 
-# data transformation
+# process data transformation
 tf_test_trs_sv_data=trs_transform_fit.fit(test_trs_sv_data)
 tf_test_nontrs_sv_data=nontrs_transform_fit.fit(test_nontrs_sv_data)
 
