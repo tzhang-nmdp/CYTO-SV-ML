@@ -53,4 +53,4 @@ test_trs_sv_predictions = pre_trained_automl_trs_model.predict_all(test_trs_sv_d
 test_nontrs_sv_predictions = pre_trained_automl_nontrs_model.predict_all(test_nontrs_sv_data)
 
 ```
-Note: The scripts in step 2 and 3 has been tested with python version 3.9.6
+Note: The scripts in step 2 and 3 have been tested with python version 3.9.6
