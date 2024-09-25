@@ -8,7 +8,7 @@
 ${OUTPUT_DIR}/test/cyto_sv_ml/
 ${OUTPUT_DIR}/pre_trained/
 
-1.3 Unzip the files in "training_test_data" folder and copy them into your local directory like: 
+1.3 Unzip the files in **training_test_data** folder and copy them into your local directory like: 
 ${OUTPUT_DIR}/test/test.sv.all.combine_all_trs
 ${OUTPUT_DIR}/test/test.sv.all.combine_all_nontrs
 ${OUTPUT_DIR}/test/test.sv.all.combine_all_trs_all
