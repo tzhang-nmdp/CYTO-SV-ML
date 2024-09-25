@@ -12,7 +12,7 @@ ${OUTPUT_DIR}/test.sv.all.combine_all_nontrs
 ${OUTPUT_DIR}/test.sv.all.combine_all_trs_all
 ${OUTPUT_DIR}/test.sv.all.combine_all_nontrs_all
 
-1.4 Unzip model.zip and copy pre-trained model and test data into the folder as:
+1.4 Unzip pre_trained_model.zip and copy files into the folder as:
 ${OUTPUT_DIR}/pre_trained_trs_model_folder
 ${OUTPUT_DIR}/pre_trained_nontrs_model_folder
 ${OUTPUT_DIR}/trs_transform_fit.pickle
