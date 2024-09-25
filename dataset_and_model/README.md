@@ -6,7 +6,7 @@
 
 1.2 Create output folder: ${OUTPUT_DIR}/${cohort_name}/cyto_sv_ml/
 
-1.3 Unzip and copy the consolidated dataset into the folder as: 
+1.3 Unzip test.zip and copy the consolidated dataset into the folder as: 
 ${OUTPUT_DIR}/test.sv.all.combine_all_trs
 ${OUTPUT_DIR}/test.sv.all.combine_all_nontrs
 ${OUTPUT_DIR}/test.sv.all.combine_all_trs_all
