@@ -7,10 +7,10 @@
 1.2 Create output folder: ${OUTPUT_DIR}/${cohort_name}/cyto_sv_ml/
 
 1.3 Unzip and copy the consolidated dataset into the folder as: 
-${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_trs
-${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_nontrs
-${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_trs_all
-${OUTPUT_DIR}/${cohort_name}.sv.all.combine_all_nontrs_all
+${OUTPUT_DIR}/test.sv.all.combine_all_trs
+${OUTPUT_DIR}/test.sv.all.combine_all_nontrs
+${OUTPUT_DIR}/test.sv.all.combine_all_trs_all
+${OUTPUT_DIR}/test.sv.all.combine_all_nontrs_all
 
 1.4 Unzip and copy pre-trained model and test data into the folder as:
 ${OUTPUT_DIR}/pre_trained_trs_model_folder
@@ -21,7 +21,7 @@ ${OUTPUT_DIR}/test_nontrs_sv_data_file
 
 ### 2. Run CYTO-SV-ML AUTOML model training and validation
 ```
-python {CYTO_SV_ML_DIR}/Pipeline_script/CYTO-SV-Auto-ML_modelling.py -s ${cohort_name} -o ${OUTPUT_DIR}/${cohort_name} -x ${params.sv_feature_metrics_index} -k ${params.kfs} 
+python {CYTO_SV_ML_DIR}/Pipeline_script/CYTO-SV-Auto-ML_modelling.py -s test -o ${OUTPUT_DIR}/test -x ${params.sv_feature_metrics_index} -k ${params.kfs} 
 ```
 Note: This is a subset of > 5GB dataset and full data information will be available in our publication:
 
