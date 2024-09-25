@@ -16,26 +16,13 @@ CYTO-SV-ML is a snakemake based workflow for calling, quality control, annotatio
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Installation
 ============
-### Install conda/linux environment
+### Install Conda/Docker environment
 ```
-mkdir -p ~/miniconda3
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-rm -rf ~/miniconda3/miniconda.sh
-~/miniconda3/bin/conda init bash
-~/miniconda3/bin/conda init zsh
-# conda update -n base -c defaults conda # in case that conda version is old
-conda install -n base -c conda-forge mamba
-yum install R
+Conda and Docker are prerequisites and please install them in your local environment. 
 ```
 
 ### Install parliament and chromoseq Docker
 ```
-# install docker in the linux system
-sudo yum install -y yum-utils
-sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum install docker-ce docker-ce-cli containerd.io
-sudo systemctl start docker
 # download parliament and chromoseq Docker
 sudo docker pull docker.io/dnanexus/parliament2:latest # Parliament: https://github.com/dnanexus/parliament2
 sudo docker pull  docker.io/zatawada/docker-basespace_chromoseq_v2:master # ChromoSeq: https://github.com/genome/docker-basespace_chromoseq
