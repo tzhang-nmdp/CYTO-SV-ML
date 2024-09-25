@@ -4,21 +4,23 @@
 ```
 1.1 Install CYTO-SV-ML environment according to the instruction at main page
 
-1.2 Create your local output directory: ${OUTPUT_DIR}/cyto_sv_ml/
+1.2 Create your local output directory:
+${OUTPUT_DIR}/test/cyto_sv_ml/
+${OUTPUT_DIR}/pre_trained/
 
 1.3 Unzip the files in training_test_data folder and copy them into your local directory like: 
-${OUTPUT_DIR}/test.sv.all.combine_all_trs
-${OUTPUT_DIR}/test.sv.all.combine_all_nontrs
-${OUTPUT_DIR}/test.sv.all.combine_all_trs_all
-${OUTPUT_DIR}/test.sv.all.combine_all_nontrs_all
+${OUTPUT_DIR}/test/test.sv.all.combine_all_trs
+${OUTPUT_DIR}/test/test.sv.all.combine_all_nontrs
+${OUTPUT_DIR}/test/test.sv.all.combine_all_trs_all
+${OUTPUT_DIR}/test/test.sv.all.combine_all_nontrs_all
 
 1.4 Unzip pre_trained_model.zip and copy the files into your local directory like:
-${OUTPUT_DIR}/pre_trained_trs_model_folder
-${OUTPUT_DIR}/pre_trained_nontrs_model_folder
-${OUTPUT_DIR}/trs_transform_fit.pickle
-${OUTPUT_DIR}/nontrs_transform_fit.pickle
-${OUTPUT_DIR}/test_trs_sv_data_file
-${OUTPUT_DIR}/test_nontrs_sv_data_file
+${OUTPUT_DIR}/pre_trained/pre_trained_trs_model_folder
+${OUTPUT_DIR}/pre_trained/pre_trained_nontrs_model_folder
+${OUTPUT_DIR}/pre_trained/trs_transform_fit.pickle
+${OUTPUT_DIR}/pre_trained/nontrs_transform_fit.pickle
+${OUTPUT_DIR}/pre_trained/test_trs_sv_data_file
+${OUTPUT_DIR}/pre_trained/test_nontrs_sv_data_file
 ```
 
 ### 2. Run CYTO-SV-ML AUTOML model training and validation
@@ -39,12 +41,12 @@ import pickle
 
 #######################################################################################################################
 # replace ${OUTPUT_DIR} with your local directory
-pre_trained_trs_model_folder="${OUTPUT_DIR}/pre_trained_trs_model_folder"
-pre_trained_automl_nontrs_model_folder="${OUTPUT_DIR}/pre_trained_nontrs_model_folder"
-trs_transform_fit_pickle_file="${OUTPUT_DIR}/trs_transform_fit.pickle"
-nontrs_transform_fit_pickle_file="${OUTPUT_DIR}/nontrs_transform_fit.pickle"
-test_trs_sv_data_file="${OUTPUT_DIR}/test_trs_sv_data_file"
-test_nontrs_sv_data_file="${OUTPUT_DIR}/test_nontrs_sv_data_file"
+pre_trained_trs_model_folder="${OUTPUT_DIR}/pre_trained/pre_trained_trs_model_folder"
+pre_trained_automl_nontrs_model_folder="${OUTPUT_DIR}/pre_trained/pre_trained_nontrs_model_folder"
+trs_transform_fit_pickle_file="${OUTPUT_DIR}/pre_trained/trs_transform_fit.pickle"
+nontrs_transform_fit_pickle_file="${OUTPUT_DIR}/pre_trained/nontrs_transform_fit.pickle"
+test_trs_sv_data_file="${OUTPUT_DIR}/pre_trained/test_trs_sv_data_file"
+test_nontrs_sv_data_file="${OUTPUT_DIR}/pre_trained/test_nontrs_sv_data_file"
 #######################################################################################################################
 
 # load pre-trained model
