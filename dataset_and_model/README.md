@@ -69,4 +69,4 @@ tf_test_nontrs_sv_data=nontrs_transform_fit.fit(test_nontrs_sv_data)
 test_trs_sv_predictions = pre_trained_automl_trs_model.predict_all(tf_test_trs_sv_data)
 test_nontrs_sv_predictions = pre_trained_automl_nontrs_model.predict_all(tf_test_nontrs_sv_data)
 ```
-Note: The scripts in step 2 and 3 have been tested with python version 3.9.6
+Note: The scripts in step 2 and 3 have been tested with python version 3.10
