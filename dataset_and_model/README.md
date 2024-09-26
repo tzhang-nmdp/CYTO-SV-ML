@@ -55,7 +55,7 @@ pre_trained_automl_nontrs_model = AutoML(results_path=pre_trained_automl_nontrs_
 
 # load data preprocess
 trs_transform_fit=pickle.load(open(trs_transform_fit_pickle_file, "rb"))
-nontrs_transform_fit=pickle.load(open(trs_transform_fit_pickle_file,"rb"))
+nontrs_transform_fit=pickle.load(open(nontrs_transform_fit_pickle_file,"rb"))
 
 # load test dataset
 test_trs_sv_data = pd.read_csv(test_trs_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
