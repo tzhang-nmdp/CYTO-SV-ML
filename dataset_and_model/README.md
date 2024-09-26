@@ -62,8 +62,8 @@ test_trs_sv_data = pd.read_csv(test_trs_sv_data_file,sep="\t", header=0, index_c
 test_nontrs_sv_data = pd.read_csv(test_nontrs_sv_data_file,sep="\t", header=0, index_col=None, keep_default_na=False)
 
 # run data preprocess 
-tf_test_trs_sv_data=trs_transform_fit.fit(test_trs_sv_data)
-tf_test_nontrs_sv_data=nontrs_transform_fit.fit(test_nontrs_sv_data)
+tf_test_trs_sv_data=trs_transform_fit.transform(test_trs_sv_data)
+tf_test_nontrs_sv_data=nontrs_transform_fit.transform(test_nontrs_sv_data)
 
 # run sv classification prediction
 test_trs_sv_predictions = pre_trained_automl_trs_model.predict_all(tf_test_trs_sv_data)
