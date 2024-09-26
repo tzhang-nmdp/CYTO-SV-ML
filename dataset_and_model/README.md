@@ -1,4 +1,4 @@
-# Instructions for training, validation and prediction of CYTO-SV-ML SV classification using MDS cohorts
+# Instructions for training, validation and prediction of CYTO-SV-ML SV classification using MDS cohort data
 
 ### 1. Prepare CYTO-SV-ML environment and data
 ```
