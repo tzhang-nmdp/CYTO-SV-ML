@@ -40,7 +40,7 @@ import pandas as pd
 import pickle
 
 #######################################################################################################################
-# replace ${OUTPUT_DIR} with your local directory
+# replace ${OUTPUT_DIR} with your local directory !!!
 pre_trained_trs_model_folder="${OUTPUT_DIR}/pre_trained/pre_trained_trs_model_folder"
 pre_trained_automl_nontrs_model_folder="${OUTPUT_DIR}/pre_trained/pre_trained_nontrs_model_folder"
 trs_transform_fit_pickle_file="${OUTPUT_DIR}/pre_trained/trs_transform_fit.pickle"
