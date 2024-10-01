@@ -3,7 +3,7 @@
 CYTO-SV-ML is a snakemake based workflow for calling, quality control, annotations, and classification (germline/somatic) of strucutural variations from whole genome sequencing data. It's integrated multiple SV callers (Delly/Breakdancer/CNVnator/Manta/Lumpy/ichorCNV) from Parliament2 and Chromoseq pipelines. Empowered by a collection of Public SV databases (DGV (http://dgv.tcag.ca), gnomAD (gnomad.broadinstitute.org/help/sv-overview), 1000 Genomes (www.internationalgenome.org/phase-3-structural-variant-dataset), CytoAtlas (atlasgeneticsoncology.org), and COSMIC (cancer.sanger.ac.uk/cosmic)), benchmarking SV data have been produced via comprehensive annotation and filtering algorithms. IN two MDS patient cohorts (494/94), it's achieved > 0.90 AUC and retrieved cytogenetic informations in 11% patients whose clinical records are missing. 
 
 #### CYTO-SV-ML pipeline design:
-![CYTO-SV-ML PIPELINE WORKFLOW](workflow.jpg)
+![CYTO-SV-ML PIPELINE WORKFLOW](workflow.png)
 
 ### CYTO-SV-ML snakemake workflow
 ![CYTO-SV-ML Snakemake Snakemake workflow](cyto-sv-ml_snakemake_workflow.png)
