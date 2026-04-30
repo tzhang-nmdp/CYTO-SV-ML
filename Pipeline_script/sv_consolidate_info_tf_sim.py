@@ -1,10 +1,28 @@
-import sys,os,re
-in_vcf=open(sys.argv[1],'r')
-out_vcf=open(str(sys.argv[1])+'.sv_info.sim','w')
+"""
+sv_consolidate_info_tf_sim.py
+==============================
+Extracts specified INFO fields (e.g., SUPP, QUAL) from a SURVIVOR-merged VCF
+and maps them to consolidated SV IDs.
+
+Usage:
+  python sv_consolidate_info_tf_sim.py <merged.vcf> [keep_fields]
+
+Arguments:
+  merged.vcf   - SURVIVOR-merged VCF file
+  keep_fields  - '|'-delimited list of INFO fields to extract (default: SUPP|QUAL)
+
+Output:
+  {merged.vcf}.sv_info.sim
+"""
+
+import sys, os, re
+
+in_vcf = open(sys.argv[1], 'r')
+out_vcf = open(str(sys.argv[1]) + '.sv_info.sim', 'w')
 try:
-    keep_list=str(sys.argv[2]).split('|')
+    keep_list = str(sys.argv[2]).split('|')
 except:
-    keep_list=['SUPP','QUAL']
+    keep_list = ['SUPP', 'QUAL']
     
 def sv_id_tf(line):
     item=line.strip().split('\t')

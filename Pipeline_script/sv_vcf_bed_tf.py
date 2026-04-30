@@ -1,10 +1,17 @@
-################################################################################################################
-#  SV VCF - BED data output format
-# ---example-----------------------------------------------------------------
-# sv_chr  sv_start_bp  sv_end_bp  sv_chr2  sv_type  sv_id
-# chr1    100000       1000000    chr21    BND      chr1:100000:1000000:chr21:BND:MantaBND***** 
-# ------------------------------------------------------------------a---------
-################################################################################################################
+"""
+sv_vcf_bed_tf.py
+=================
+Converts a consolidated SV VCF to BED format for breakpoint extraction.
+
+Output format (tab-separated):
+  sv_chr  sv_start_bp  sv_end_bp  sv_chr2  sv_type  sv_id
+
+Usage:
+  python sv_vcf_bed_tf.py <input.vcf>
+
+Output:
+  {input.vcf}.bed
+"""
 
 import sys,os,re
 in_vcf=open(sys.argv[1],'r')

@@ -1,4 +1,24 @@
-import sys,os,re
+"""
+sv_db_tf.py
+============
+Merges SV database annotation results into the cumulative annotation file.
+
+For each database, joins the annotation label (overlap ratio or breakpoint
+distance) to the running _anno file by SV ID.
+
+Usage:
+  python sv_db_tf.py <sv_file_prefix> <database_name> [force_mode]
+
+Arguments:
+  sv_file_prefix - Path prefix (reads {prefix}.{database_name} and {prefix}_anno)
+  database_name  - Name of the SV database (e.g., '1000_g', 'cosmic_s_1000')
+  force_mode     - 'f' to force overwrite existing column
+
+Output:
+  Updates {sv_file_prefix}_anno in place
+"""
+
+import sys, os, re
 import pandas as pd
 import numpy as np
 from pathlib import Path

@@ -1,6 +1,22 @@
-import sys,os,re, collections
-in_vcf=open(sys.argv[1],'r')
-out_vcf=open(str(sys.argv[1])+'.tmp','w')
+"""
+trs_svtyper_tf.py
+==================
+Prepares TRS (BND) VCF records for SVTyper compatibility.
+
+SVTyper requires MATEID to be properly formatted. This script swaps the
+last digit of MATEID (0<->1) to create proper mate pair references.
+
+Usage:
+  python trs_svtyper_tf.py <input_trs.vcf>
+
+Output:
+  {input_trs.vcf}.tmp
+"""
+
+import sys, os, re, collections
+
+in_vcf = open(sys.argv[1], 'r')
+out_vcf = open(str(sys.argv[1]) + '.tmp', 'w')
 
 def trs_svtyper_tf(line):
     info_dict={}

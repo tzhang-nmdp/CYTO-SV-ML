@@ -1,17 +1,31 @@
-################################################################################################################
-# no-TRS SV simplified data format
-# ${main_dir}/out/${sample}/vcf_out/${sample}.sv.all.tf.nobnd
-# ---example-----------------------------------------------------------------
-# sv_chr  sv_start_bp  sv_end_bp  sv_type  sv_id
-# chr1    10000        1000000    DEL      chr1:10000:1000000:DEL:DellyDEL***** 
-# ----------------------------------------------------------------------------
-# no-TRS SV simplified database format
-# ${main_dir}/SV_database/${SV_database_name}.gz 
-# ---example------------------------------------------------------------------
-# sv_chr  sv_start_bp  sv_end_bp  sv_type  database_AF
-# chr1    10000        1000000    DEL      0.001
-# ----------------------------------------------------------------------------
-#################################################################################################################
+"""
+sv_database_mapping.py
+======================
+Annotates nonTRS (DEL/DUP/INV) SVs against a tabix-indexed SV database
+using region overlap-based matching.
+
+For each query SV, queries the database via tabix for overlapping SVs,
+merges database hits, then computes the overlap ratio between the query
+SV and the merged database region. Reports PASS/FAIL based on the
+overlap threshold.
+
+Note: This script uses Python 2.7 (commands module) and requires:
+  - tabix (from htslib) in PATH
+  - SVCNV, SVCNV_sim, SVCNV_set modules
+
+Usage:
+  python sv_database_mapping.py -i <query_sv> -t <database.gz> -d <distance> -p <percent> -o <output>
+
+Arguments:
+  -i : Input nonTRS SV file (bed-like format)
+  -t : Tabix-indexed database file (.gz + .tbi)
+  -d : Max distance for breakpoint-based merging (default: 1000)
+  -p : Min overlap ratio threshold (default: 0.7)
+  -o : Output file path
+
+Output columns:
+  chr, start, end, chr, svtype, sv_id, PASS/FAIL, info, overlap_ratio, db_matches
+"""
 
 import sys,getopt,os,commands,copy,subprocess,SVCNV,SVCNV_sim,SVCNV_set
 #parameter setting

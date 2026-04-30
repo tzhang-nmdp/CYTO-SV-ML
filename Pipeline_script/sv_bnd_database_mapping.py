@@ -1,19 +1,26 @@
-################################################################################################################
-# TRS SV simplified data format
-# ${main_dir}/out/${sample}/vcf_out/${sample}.sv.all.tf.nobnd
-# ---example-----------------------------------------------------------------
-# sv_chr  sv_start_bp  sv_end_bp  sv_chr2  sv_type  sv_id
-# chr1    100000       1000000    chr21    BND      chr1:100000:1000000:chr21:BND:MantaBND***** 
-# ----------------------------------------------------------------------------
-# TRS SV simplified database format
-# ${main_dir}/SV_database/${SV_database_name}.gz
-# ---example------------------------------------------------------------------
-# sv_chr1  sv_start_bp  sv_end_bp  sv_chr2  sv_type  database_AF
-# chr1     100000       1000000    chr21    BND      0.05
-# ----------------------------------------------------------------------------
-#################################################################################################################
+"""
+sv_bnd_database_mapping.py
+==========================
+Annotates TRS (BND/translocation) SVs against a TRS SV database using
+breakpoint distance matching.
 
-import sys,os,re
+For each query TRS SV, finds database SVs where both breakpoints are
+within the specified distance threshold. Reports the minimum distance.
+
+Usage:
+  python sv_bnd_database_mapping.py <database.trs> <query_trs_file> <db_name_distance>
+
+Arguments:
+  database.trs      - TRS database file (chr1, bp1, bp2, chr2, type)
+  query_trs_file    - Query TRS SV file with header
+  db_name_distance  - Database name with distance suffix (e.g., '1000_g_1000')
+                      Distance is parsed from the last '_' token
+
+Output:
+  {query_trs_file}.{db_name_distance}
+"""
+
+import sys, os, re
 import pandas as pd
 import warnings
 warnings.filterwarnings("ignore")

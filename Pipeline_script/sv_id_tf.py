@@ -1,10 +1,31 @@
-import sys,os,re
-in_vcf=open(sys.argv[1],'r')
-out_vcf=open(str(sys.argv[1])+'.re_id','w')
+"""
+sv_id_tf.py
+===========
+Standardizes SV IDs in VCF files to a consistent format:
+  chr:pos:end:chr2:svtype[:original_id]
+
+This ensures all callers use the same ID convention for downstream merging.
+
+Usage:
+  python sv_id_tf.py <input.vcf> [id_mode]
+
+Modes:
+  'a' (default): auto-detect; keep existing chr-based IDs, add format to others
+  'c': force chr:pos:end:chr2:type:ID format for non-chr IDs
+  'f'/'sf': always force full format
+
+Output:
+  {input.vcf}.re_id
+"""
+
+import sys, os, re
+
+in_vcf = open(sys.argv[1], 'r')
+out_vcf = open(str(sys.argv[1]) + '.re_id', 'w')
 try:
-    id_mode=str(sys.argv[2])
+    id_mode = str(sys.argv[2])
 except:
-    id_mode='a'
+    id_mode = 'a'
 
 def sv_id_tf(line):
     item=line.strip().split('\t')

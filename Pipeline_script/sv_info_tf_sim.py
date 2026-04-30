@@ -1,4 +1,23 @@
-import sys,os,re, collections
+"""
+sv_info_tf_sim.py
+==================
+Extracts key VCF INFO and FORMAT fields into a simplified tab-separated file.
+
+Default fields extracted:
+  END, CHR2, CIPOS, CIEND, SVTYPE, BND_DEPTH, MATE_BND_DEPTH,
+  GT, CN, PR, SR, DR, DV, RR, RV, RP, AP, RS, AS, ASC, PE
+
+Usage:
+  python sv_info_tf_sim.py <input.vcf> [keep_fields]
+
+Arguments:
+  input.vcf    - Input VCF file
+  keep_fields  - Optional '|'-delimited list of fields to extract
+
+Output:
+  {input.vcf}.sv_info.sim
+"""
+import sys, os, re, collections
 import numpy as np
 
 in_vcf=open(sys.argv[1],'r')

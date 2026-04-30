@@ -1,7 +1,27 @@
-import sys,os,re
-in_vcf=open(sys.argv[1],'r')
-trs_out_vcf=open(str(sys.argv[1])+'.trs_tf','w')
-nontrs_out_vcf=open(str(sys.argv[1])+'.nontrs_tf','w')
+"""
+sv_vcf_tf.py
+=============
+Splits a size-filtered VCF into TRS (BND/translocation) and nonTRS (DEL/DUP/INV)
+VCF files. Also reformats BND records for SVTyper compatibility.
+
+For BND records:
+  - Extracts PR/SR from genotype fields
+  - Adds CIPOS/CIEND if missing (default: -160,160)
+  - Removes CSQ (VEP consequence) annotations
+
+Usage:
+  python sv_vcf_tf.py <input.vcf>
+
+Output:
+  {input.vcf}.trs_tf     - TRS (BND) SVs
+  {input.vcf}.nontrs_tf  - nonTRS (DEL/DUP/INV) SVs
+"""
+
+import sys, os, re
+
+in_vcf = open(sys.argv[1], 'r')
+trs_out_vcf = open(str(sys.argv[1]) + '.trs_tf', 'w')
+nontrs_out_vcf = open(str(sys.argv[1]) + '.nontrs_tf', 'w')
 
 def vcf_bnd_tf(line):
     info_dict={}

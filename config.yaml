@@ -1,35 +1,94 @@
-# cohort name
+###############################################################################
+# CYTO-SV-ML Configuration File
+# 
+# This file defines all parameters for the CYTO-SV-ML Snakemake pipeline.
+# Please update placeholder values (enclosed in {}) before running.
+###############################################################################
+
+# ---- Cohort & Sample Identifiers ----
+# cohort_name: used as prefix for output files in the automl/interface stages
 cohort_name: '{your_cohort_name}'
 
-# directories
-main_dir: '{your_work_dir}'
-cyto_sv_ml_dir: '{cyto_sv_ml_dir}'
-py27_dir: '{your_work_dir}/miniconda3/envs/py27/bin'
-py39_dir: '{your_work_dir}/miniconda3/envs/py39/bin'
-
-# reference_dir:
-# software_dir:
-# database_dir:
-
-# files
-parliament_docker: 'docker.io/dnanexus/parliament2:latest'
-chromoseq_docker: 'docker.io/zatawada/docker-basespace_chromoseq_v2:master'
-sample_list: '{your_work_dir}/{sample_list}'
+# sample / gender: used only by the preprocess pipeline (per-sample mode)
+# Override on the command line: --config sample=XX gender=Male
 sample: '{Sample_1}'
 gender: '{Male}'
+
+# sample_list: tab-separated file with columns [sample_id, sex] (no header)
+#   used by the automl and interface pipelines for cohort-level processing
+sample_list: '{your_work_dir}/{sample_list}'
+
+# ---- Directory Paths ----
+# main_dir: root working directory; expects sub-folders: in/ (input), out/ (output)
+main_dir: '{your_work_dir}'
+
+# cyto_sv_ml_dir: path to the cloned CYTO-SV-ML repository
+#   sub-folders used: Pipeline_script/, software/, SV_database/, reference/
+cyto_sv_ml_dir: '{cyto_sv_ml_dir}'
+
+# Python environment bin directories (conda environments)
+py27_dir: '{your_work_dir}/miniconda3/envs/py27/bin'   # Python 2.7 – SVTyper, bedtools
+py39_dir: '{your_work_dir}/miniconda3/envs/py39/bin'   # Python 3.9 – AutoML modeling
+
+# ---- Docker Images ----
+# Parliament2: multi-caller SV pipeline (Breakdancer, CNVnator, Delly, Lumpy)
+parliament_docker: 'docker.io/dnanexus/parliament2:latest'
+
+# ChromoSeq: clinical WGS pipeline (Manta, ichorCNV)
+chromoseq_docker: 'docker.io/zatawada/docker-basespace_chromoseq_v2:master'
+
+# ---- Reference & Annotation Files ----
+# Cytoband dictionary: chromosome centromere coordinates for arm-level annotation
 cyto_band_file: '{cyto_sv_ml_dir}/cyto_band_dict.csv'
+
+# SV feature metrics index: defines which features are used for TRS vs nonTRS models
 sv_feature_metrics_index_file: '{cyto_sv_ml_dir}/sv_feature_metrics.csv'
 
-# sv settings
-# SV caller list
-parliament2_sv_callers: ['breakdancer','cnvnator','delly.deletion','delly.duplication','delly.inversion']
-chromoseq_sv_callers: ['ichnorcnv','manta']
-# SV database list
-sv_db: ['1000_g', '1000_gall', 'cosmic_s', 'cytoatlas_s', 'gnomad_g2ab', 'gnomad_gall', 'gnomad_g', 'gnomad_qc', 'centromere_qc', 'dgv_g', 'control_g', 'control_gall']
-# 'size': SV size < 10000 bp will be excluded in the analyses; 
+# ---- SV Caller Configuration ----
+# Parliament2 SV callers (5 callers)
+parliament2_sv_callers:
+  - 'breakdancer'
+  - 'cnvnator'
+  - 'delly.deletion'
+  - 'delly.duplication'
+  - 'delly.inversion'
+
+# ChromoSeq SV callers (2 callers)
+chromoseq_sv_callers:
+  - 'ichnorcnv'
+  - 'manta'
+
+# ---- SV Database Annotation ----
+# List of SV databases for annotation labeling
+# Germline DBs: 1000_g, gnomad_g, dgv_g
+# Artifact/QC DBs: gnomad_qc, control_g, centromere_qc
+# Somatic DBs: cosmic_s, cytoatlas_s
+sv_db:
+  - '1000_g'          # 1000 Genomes (>=2 hits)
+  - '1000_gall'       # 1000 Genomes (all SVs)
+  - 'cosmic_s'        # COSMIC somatic SVs
+  - 'cytoatlas_s'     # CytoAtlas cytogenetic SVs
+  - 'gnomad_g2ab'     # gnomAD (>=2 allele hits)
+  - 'gnomad_gall'     # gnomAD (all SVs)
+  - 'gnomad_g'        # gnomAD (AF >= 0.05)
+  - 'gnomad_qc'       # gnomAD (QC-failed SVs)
+  - 'centromere_qc'   # Centromere regions (artifact-prone)
+  - 'dgv_g'           # Database of Genomic Variants
+  - 'control_g'       # Normal donor WGS (>=100 hits)
+  - 'control_gall'    # Normal donor WGS (>=10 hits)
+
+# ---- SV Filtering & Labeling Thresholds ----
+# Minimum SV size in bp; SVs smaller than this are excluded
 size: 10000
-# 'trs_sv_cutoff': SV breakpoint distance > 1000 bp to SVs in database annotation will be not be labelled;  'nontrs_sv_cutoff': SV region overlap < 0.9 (90%) to SVs in database annotation will be not be labelled;
+
+# TRS (translocation) labeling: max breakpoint distance (bp) to a database SV
+#   SVs with distance <= trs_sv_cutoff are labeled as matching the database
 trs_sv_cutoff: 1000
-nontrs_sv_cutoff : 0.9
-# kfolds: k folds for machine learning models
+
+# NonTRS (DEL/DUP/INV) labeling: minimum overlap ratio with a database SV
+#   SVs with overlap >= nontrs_sv_cutoff are labeled as matching the database
+nontrs_sv_cutoff: 0.9
+
+# ---- Machine Learning Settings ----
+# Number of k-fold iterations for sub-oversampling cross-validation
 kfolds: 5

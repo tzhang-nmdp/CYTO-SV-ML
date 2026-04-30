@@ -1,4 +1,37 @@
-import sys,getopt,os
+"""
+interface_data.py
+==================
+Generates SV predictions for the R Shiny web portal.
+
+Loads the trained AutoML models (last k-fold) and preprocessing pipelines,
+predicts SV classes for all SVs, then prepares a combined output file
+with predictions, read statistics, and database annotations.
+
+Steps:
+  1. Load trained TRS and nonTRS AutoML models + preprocessing pipelines
+  2. Read transformed SV feature matrices
+  3. Apply preprocessing and predict SV classes
+  4. Rename columns to human-readable names for the web portal
+  5. Compute derived read statistics (total ref/alt reads, read diff)
+  6. Annotate which databases each SV matches
+  7. Combine TRS + nonTRS predictions into a single file
+  8. Compute max prediction probability across classes
+
+Usage:
+  python interface_data.py -t <trs_model_prefix> -n <nontrs_model_prefix> -i <data_prefix>
+
+Arguments:
+  -t : TRS model prefix (reads {prefix}_ts_EXP/ and {prefix}_tf.pickle)
+  -n : nonTRS model prefix (same pattern)
+  -i : Data file prefix (reads {prefix}.sv.all.combine_all_trs etc.)
+
+Output:
+  {data_prefix}.trs_pred     - TRS predictions with metadata
+  {data_prefix}.nontrs_pred  - nonTRS predictions with metadata
+  {data_prefix}.all_pred     - Combined predictions for Shiny app
+"""
+
+import sys, getopt, os
 import numpy as np
 import scipy as sp
 import pandas as pd

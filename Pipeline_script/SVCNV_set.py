@@ -1,12 +1,23 @@
+"""
+SVCNV_set.py
+=============
+SV/CNV set operations for database annotation.
+
+Classes:
+  SVCNV           - Parses SV from simplified bed-like format (chr, start, end, type, info)
+  SVCNV_set       - Parses SV set entry
+  SVCNV_transform - Container for transformed/merged SV records
+
+Functions:
+  subtract_by_overlap    - Compute gap between query SV and database SVs (overlap-based)
+  subtract_by_breakpoint - Compute gap between query SV and database SVs (distance-based)
+  merge_by_overlap       - Merge overlapping database SVs
+  merge_by_breakpoint    - Merge database SVs by breakpoint proximity
+  simplify_by_overlap    - Simplify overlapping SV regions
+  simplify_by_breakpoint - Simplify SVs by breakpoint proximity
+"""
+
 #chr: chromsome
-#start_pos: start position
-#end_pos: end position
-#svcnv_type: svcnv type(DUP,DEL,INV,INS...)
-#ci_start: Confidence interval around POS for imprecise variants
-#ci_end: Confidence interval around END for imprecise variants
-#pe: Number of paired-end reads supporting the variant across all samples
-#sr: Number of split reads supporting the variant across all samples
-#qual: quality score
 import copy
 
 class SVCNV:

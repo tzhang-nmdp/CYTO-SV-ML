@@ -1,7 +1,26 @@
-import sys,os,re
-in_vcf=open(sys.argv[1],'r')
-size=int(sys.argv[2])
-cut_direction=str(sys.argv[3])
+"""
+sv_size.py
+==========
+Filters SVs by size from a VCF file.
+
+Usage:
+  python sv_size.py <input.vcf> <size_threshold> <direction>
+
+Arguments:
+  input.vcf      - Input VCF file
+  size_threshold - Size threshold in bp
+  direction      - 'down': keep SVs >= threshold (filter small)
+                   'up': keep SVs <= threshold (filter large)
+
+Output:
+  Filtered VCF lines printed to stdout
+"""
+
+import sys, os, re
+
+in_vcf = open(sys.argv[1], 'r')
+size = int(sys.argv[2])
+cut_direction = str(sys.argv[3])
 
 def vcf_sv_sim(line):
     sv_dict={}

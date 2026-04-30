@@ -1,12 +1,21 @@
+"""
+SVCNV.py
+========
+SV/CNV data class for parsing VCF records from Lumpy, Delly, Manta, CNVnator.
+
+Classes:
+  SVCNV        - Parses a single SV record from VCF format
+  SVCNV_merged - Container for merged SV records
+
+Functions:
+  merge_by_overlap    - Merge SVs with >= percent reciprocal overlap
+  merge_by_breakpoint - Merge SVs with breakpoints within distance bp
+
+Attributes parsed: chr, start_pos, end_pos, length, svcnv_type,
+                   ci_start, ci_end, pe, sr, qual, caller_name
+"""
+
 #chr: chromsome
-#start_pos: start position
-#end_pos: end position
-#svcnv_type: svcnv type(DUP,DEL,INV,INS...)
-#ci_start: Confidence interval around POS for imprecise variants
-#ci_end: Confidence interval around END for imprecise variants
-#pe: Number of paired-end reads supporting the variant across all samples
-#sr: Number of split reads supporting the variant across all samples
-#qual: quality score
 
 class SVCNV:
     def __init__(self,cnv_line):

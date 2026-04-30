@@ -1,6 +1,23 @@
-import sys,os,re
-in_vcf=open(sys.argv[1],'r')
-out_vcf=open(str(sys.argv[1])+'.sv_id_mapping','w')
+"""
+sv_consolidate_id_mapping.py
+=============================
+Creates a mapping between consolidated SV IDs (from SURVIVOR merge) and
+the original per-caller SV IDs.
+
+Parses the FORMAT:ID field from the merged VCF to extract individual caller
+IDs and maps them to the consolidated chr:pos:end:chr2:type format.
+
+Usage:
+  python sv_consolidate_id_mapping.py <merged.vcf>
+
+Output:
+  {merged.vcf}.sv_id_mapping (tab-separated: consolidated_id, caller_id)
+"""
+
+import sys, os, re
+
+in_vcf = open(sys.argv[1], 'r')
+out_vcf = open(str(sys.argv[1]) + '.sv_id_mapping', 'w')
 
 def sv_id_tf(line):
     item=line.strip().split('\t')

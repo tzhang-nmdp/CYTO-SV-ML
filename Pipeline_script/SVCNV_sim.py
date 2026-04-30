@@ -1,12 +1,21 @@
+"""
+SVCNV_sim.py
+=============
+Simplified SV/CNV class for merging SVs across samples in database annotation.
+
+Classes:
+  SVCNV        - Parses SV from simplified format with sample ID
+  SVCNV_merged - Container for merged SV records with sample tracking
+
+Functions:
+  merge_by_overlap    - Merge SVs with reciprocal overlap >= percent
+  merge_by_breakpoint - Merge SVs with breakpoints within distance bp
+
+Helper functions:
+  getchr, getstart, getend - Sort key extractors for multi-level sorting
+"""
+
 #chr: chromsome
-#start_pos: start position
-#end_pos: end position
-#svcnv_type: svcnv type(DUP,DEL,INV,INS...)
-#ci_start: Confidence interval around POS for imprecise variants
-#ci_end: Confidence interval around END for imprecise variants
-#pe: Number of paired-end reads supporting the variant across all samples
-#sr: Number of split reads supporting the variant across all samples
-#qual: quality score
 
 class SVCNV:
     def __init__(self,cnv_line):

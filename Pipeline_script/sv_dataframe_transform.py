@@ -1,14 +1,53 @@
+"""
+sv_dataframe_transform.py
+=========================
+Core data transformation module for CYTO-SV-ML.
+
+Provides three functions:
+  - trs_sv_data_transform:   Transform TRS (translocation/BND) SV data
+  - nontrs_sv_data_transform: Transform nonTRS (DEL/DUP/INV) SV data
+  - sv_data_summary_plot:    Generate stacked bar plot of SV class distribution
+
+Transformation steps (both TRS and nonTRS):
+  1. Shuffle data randomly (seed=0 for reproducibility)
+  2. Convert database annotations to binary labels (YVID = matched)
+  3. Parse confidence intervals (CIPOS/CIEND) into numeric columns
+  4. Harmonize read support fields (PR/SR) across different caller formats
+  5. Filter low-quality SVs
+  6. Compute derived features (read ratios, CI ranges, depth ratios)
+  7. Assign benchmark labels: -1=artifact, 0=unlabeled, 1=germline, 2=somatic
+  8. Select model features and return (reduced_df, full_df)
+
+Labeling logic:
+  - Germline (1): matched in 1000G, gnomAD (AF>=0.05), or DGV
+  - Artifact (-1): matched in gnomAD QC-fail, normal donor controls, or centromere
+  - Somatic (2): matched in COSMIC/CytoAtlas/ChromoSeq, NOT in germline/control DBs
+  - Unlabeled (0): no exclusive match to any category
+  - Conflicts (matched in multiple categories) are left unlabeled (0)
+"""
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import random 
+import random
 from itertools import repeat
 import os, sys, getopt
 
-############################################################################################################################################################# 
 
-def trs_sv_data_transform(sv_data_trs,trs_sv_cutoff):
-    # re-arrange the data
+def trs_sv_data_transform(sv_data_trs, trs_sv_cutoff):
+    """Transform TRS (translocation/BND) SV data for ML modeling.
+
+    Args:
+        sv_data_trs (pd.DataFrame): Raw TRS SV data with all features.
+        trs_sv_cutoff (int): Max breakpoint distance (bp) for database matching.
+            SVs with distance <= cutoff are labeled 'YVID' (Yes, Validated In Database).
+
+    Returns:
+        tuple: (sv_data_trs_2, sv_data_trs)
+            - sv_data_trs_2: Reduced feature matrix (model features + label)
+            - sv_data_trs: Full data matrix with all columns + label
+    """
+    # Shuffle data randomly for unbiased training
     random.seed(0)
     new_index=random.sample(list(range(sv_data_trs.shape[0])), k=sv_data_trs.shape[0]) 
     sv_data_trs=sv_data_trs.reset_index(drop=True)
@@ -147,7 +186,24 @@ def trs_sv_data_transform(sv_data_trs,trs_sv_cutoff):
     return sv_data_trs_2,sv_data_trs
 
 def nontrs_sv_data_transform(sv_data_nontrs, nontrs_sv_cutoff):
-    # re-arrange the data
+    """Transform nonTRS (DEL/DUP/INV) SV data for ML modeling.
+
+    Args:
+        sv_data_nontrs (pd.DataFrame): Raw nonTRS SV data with all features.
+        nontrs_sv_cutoff (float): Min overlap ratio for database matching.
+            SVs with overlap >= cutoff are labeled as matching the database.
+
+    Returns:
+        tuple: (sv_data_nontrs_2, sv_data_nontrs)
+            - sv_data_nontrs_2: Reduced feature matrix (model features + label)
+            - sv_data_nontrs: Full data matrix with all columns + label
+
+    Note:
+        Additional filters applied for nonTRS:
+        - sv_length >= 1,000,000 bp (large SVs only for benchmarking)
+        - Genotype must be 0/1 (heterozygous)
+    """
+    # Shuffle data randomly for unbiased training
     random.seed(0)
     new_index=random.sample(list(range(sv_data_nontrs.shape[0])), k=sv_data_nontrs.shape[0]) 
     sv_data_nontrs=sv_data_nontrs.reset_index(drop=True)
@@ -291,7 +347,16 @@ def nontrs_sv_data_transform(sv_data_nontrs, nontrs_sv_cutoff):
     return sv_data_nontrs_2,sv_data_nontrs
 
 def sv_data_summary_plot(sv_data):
-    # count labels by  sv type
+    """Generate a stacked bar plot showing SV class distribution by SV type.
+
+    Args:
+        sv_data (pd.DataFrame): Transformed SV data with 'sv_type' and 'label' columns.
+
+    Returns:
+        matplotlib.figure.Figure: Stacked bar chart with counts per class per SV type.
+            Classes: -1 (artifact), 1 (germline), 2 (somatic)
+    """
+    # Count labels by SV type
     sv_datat2=sv_data.copy()
     sv_datat2.insert(sv_datat2.shape[1], "count", list(repeat(1,sv_datat2.shape[0])), True)
     sv_datat2=sv_datat2.loc[:,['sv_type','label','count']]

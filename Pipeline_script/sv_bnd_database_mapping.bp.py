@@ -1,19 +1,27 @@
-################################################################################################################
-# TRS SV simplified data format
-# ${main_dir}/out/${sample}/vcf_out/${sample}.sv.all.tf.nobnd
-# ---example-----------------------------------------------------------------
-# sv_chr  sv_start_bp  sv_end_bp  sv_chr2  sv_type  sv_id
-# chr1    100000       1000000    chr21    BND      chr1:100000:1000000:chr21:BND:MantaBND***** 
-# ----------------------------------------------------------------------------
-# TRS SV simplified database format
-# ${main_dir}/SV_database/${SV_database_name}.gz
-# ---example------------------------------------------------------------------
-# sv_chr1  sv_start_bp  sv_end_bp  sv_chr2  sv_type  database_AF
-# chr1     100000       1000000    chr21    BND      0.05
-# ----------------------------------------------------------------------------
-#################################################################################################################
+"""
+sv_bnd_database_mapping.bp.py
+==============================
+Annotates TRS (BND/translocation) SVs against a TRS SV database using
+breakpoint distance matching WITH confidence interval (CI) support.
 
-import sys,os,re
+Unlike sv_bnd_database_mapping.py, this version uses databases that include
+CI ranges (columns: chr1, bp1_start, bp1_end, chr2, bp2_start, bp2_end).
+A match occurs when the query breakpoint falls within the CI range of a
+database SV (expanded by bp_dis).
+
+Usage:
+  python sv_bnd_database_mapping.bp.py <database.bp.trs> <query_trs_file> <db_name_distance>
+
+Arguments:
+  database.bp.trs   - TRS database with CI info (6+ columns)
+  query_trs_file    - Query TRS SV file with header
+  db_name_distance  - Database name with distance suffix (e.g., '1000_g_1000')
+
+Output:
+  {query_trs_file}.{db_name_distance}
+"""
+
+import sys, os, re
 import pandas as pd
 import warnings
 warnings.filterwarnings("ignore")
